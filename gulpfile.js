@@ -3,7 +3,8 @@ watch = require('gulp-watch'),
 postcss = require('gulp-postcss'),
 autoprefixer = require('autoprefixer'),
 cssvars = require('postcss-simple-vars'),
-nested = require('postcss-nested')
+nested = require('postcss-nested'),
+cssImport = require('postcss-import')
 
 gulp.task('watch', function(){
     watch('./app/index.html', function(){
@@ -22,6 +23,6 @@ function htmlProcess(){
 function stylesProcess(){
     console.log("Processing CSS")
     return gulp.src('./app/assets/styles/styles.css')
-    .pipe(postcss([cssvars, nested, autoprefixer]))        
+    .pipe(postcss([cssImport, cssvars, nested, autoprefixer]))        
     .pipe(gulp.dest('./app/temp/styles'))
 }
