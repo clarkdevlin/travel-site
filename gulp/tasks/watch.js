@@ -14,6 +14,8 @@ gulp.task('watch', function(){
     gulp.watch('./app/*.html', gulp.series('reloadPage'))
 
     gulp.watch('./app/assets/styles/**/*.css', gulp.series('styles','cssInject'))
+
+    gulp.watch('./app/assets/scripts/**/*.js', gulp.series('scriptsRefresh'))
 })
 
 gulp.task('cssInject', function (){
@@ -25,3 +27,9 @@ gulp.task('reloadPage', function(done){
     browserSync.reload()
     done()
 })
+
+
+gulp.task('scriptsRefresh', gulp.series('scripts', function (done){
+    browserSync.reload()
+    done()
+}))
